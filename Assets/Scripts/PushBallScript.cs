@@ -6,10 +6,7 @@ public class PushBallScript : MonoBehaviour
 
     public float pushforce = 500f;
 
-    void Start()
-    {
-        Debug.Log("A simple bowlong game. Use Left and Right Arrows to adjust the ball and Up Arrow to shoot.");
-    }
+    
 
     void Update()
     {

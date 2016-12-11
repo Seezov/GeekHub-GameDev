@@ -11,23 +11,43 @@ public class PlayerMovement : MonoBehaviour
 
     float verticalRotation = 0;
     public float upDownRange = 60.0f;
-
+    private bool _cursorLocked = false;
     float verticalVelocity = 0;
 
     CharacterController characterController;
+
+    public bool CursorLocked
+    {
+        get { return _cursorLocked; }
+        set { _cursorLocked = value; }
+    }
 
     // Use this for initialization
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        CursorLocked = true;
         characterController = GetComponent<CharacterController>();
     }
+
+
+
 
     // Update is called once per frame
     void Update()
     {
-        // Rotation
-
+       
+        if (Input.GetKey(KeyCode.F) && CursorLocked)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            CursorLocked = false;
+        }
+        if (Input.GetKey(KeyCode.F) && !CursorLocked)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            CursorLocked = true;
+        }
+        // Rotationa
         float rotLeftRight = Input.GetAxis("Mouse X") * mouseSensitivity;
         transform.Rotate(0, rotLeftRight, 0);
 
